@@ -1,112 +1,117 @@
-function ProductoCard({
-  producto,
-  onEliminar,
-  onEditar,
-  modificarStock
-}) {
+  import { NavLink } from "react-router";
 
-  return (
-    <article className="producto-card">
+  function ProductoCard({
+    producto,
+    onEliminar,
+    onEditar,
+    modificarStock
+  }) {
 
-      <h2>{producto.nombre}</h2>
+    return (
+      <article className="producto-card">
 
-      <p>
-        <strong>Categoría:</strong>{" "}
-        {producto.categoria}
-      </p>
-
-      <p>
-        Precio original:{" "}
-        <s>
-          ${producto.precio.toLocaleString("es-CO")}
-        </s>
-      </p>
-
-      <p className="precio-descuento">
-        Precio con descuento: $
-        {producto.precioFinal.toLocaleString("es-CO")}
-      </p>
-
-      <span className="descuento">
-        {producto.descuento}% de descuento
-      </span>
-
-      <div className="stock">
+        <h2>{producto.nombre}</h2>
 
         <p>
-          <strong>Stock:</strong>{" "}
-          {producto.stock} unidades
+          <strong>Categoría:</strong>{" "}
+          {producto.categoria}
         </p>
 
-        <div className="stock-controles">
+        <p>
+          Precio original:{" "}
+          <s>
+            ${producto.precio.toLocaleString("es-CO")}
+          </s>
+        </p>
 
-          <button
-            className="btn-stock btn-menos"
-            onClick={() =>
-              modificarStock(producto.id, -1)
-            }
-            disabled={producto.stock === 0}
-          >
-            −
-          </button>
+        <p className="precio-descuento">
+          Precio con descuento: $
+          {producto.precioFinal.toLocaleString("es-CO")}
+        </p>
 
-          <span className="stock-numero">
-            {producto.stock}
-          </span>
+        <span className="descuento">
+          {producto.descuento}% de descuento
+        </span>
 
-          <button
-            className="btn-stock btn-mas"
-            onClick={() =>
-              modificarStock(producto.id, 1)
-            }
-          >
-            +
-          </button>
+        <div className="stock">
+
+          <p>
+            <strong>Stock:</strong>{" "}
+            {producto.stock} unidades
+          </p>
+
+          <div className="stock-controles">
+
+            <button
+              className="btn-stock btn-menos"
+              onClick={() =>
+                modificarStock(producto.id, -1)
+              }
+              disabled={producto.stock === 0}
+            >
+              −
+            </button>
+
+            <span className="stock-numero">
+              {producto.stock}
+            </span>
+
+            <button
+              className="btn-stock btn-mas"
+              onClick={() =>
+                modificarStock(producto.id, 1)
+              }
+            >
+              +
+            </button>
+
+          </div>
 
         </div>
 
-      </div>
+        {producto.stock === 0 ? (
 
-      {producto.stock === 0 ? (
+          <span className="agotado">
+            ✕ Agotado
+          </span>
 
-        <span className="agotado">
-          ✕ Agotado
-        </span>
+        ) : producto.stock <= 2 ? (
 
-      ) : producto.stock <= 2 ? (
+          <span className="stock-bajo">
+            ⚠ Stock bajo
+          </span>
 
-        <span className="stock-bajo">
-          ⚠ Stock bajo
-        </span>
+        ) : (
 
-      ) : (
+          <span className="disponible">
+            ✓ Disponible
+          </span>
 
-        <span className="disponible">
-          ✓ Disponible
-        </span>
+        )}
 
-      )}
+        <button
+          className="btn-eliminar"
+          onClick={() =>
+            onEliminar(producto.id)
+          }
+        >
+          Eliminar producto
+        </button>
 
-      <button
-        className="btn-eliminar"
-        onClick={() =>
-          onEliminar(producto.id)
-        }
-      >
-        Eliminar producto
-      </button>
+        <br />
 
-      <br />
+        <button
+    className="btn-editar"
+    onClick={() => onEditar(producto)}
+  >
+    Editar
+  </button>
+  <NavLink to={`/productos/${producto.id}`}>
+  Ver detalle
+</NavLink>
 
-      <button
-  className="btn-editar"
-  onClick={() => onEditar(producto)}
->
-  Editar
-</button>
+      </article>
+    );
+  }
 
-    </article>
-  );
-}
-
-export default ProductoCard;
+  export default ProductoCard;
