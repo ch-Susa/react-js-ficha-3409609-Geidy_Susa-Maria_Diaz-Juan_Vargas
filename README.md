@@ -35,3 +35,77 @@ Gestionar el estado de la aplicación con useState.
 Persistir los productos utilizando localStorage.
 Utilizar useEffect() para sincronizar los cambios del inventario con localStorage.
 Limpiar los filtros de búsqueda, categoría, stock y ordenamiento.
+# Gestor de Inventario - React
+
+Aplicación web para gestionar un inventario de productos desarrollada con React y Vite.
+
+## Funcionalidades
+
+* Agregar productos.
+* Editar productos existentes.
+* Eliminar productos con confirmación.
+* Modificar el stock.
+* Buscar productos por nombre.
+* Filtrar por categoría.
+* Filtrar por estado de stock.
+* Ordenar productos por nombre, precio y stock.
+* Calcular el valor total del inventario.
+* Mostrar productos disponibles y agotados.
+* Mostrar indicador de stock bajo.
+* Validar los datos del formulario.
+* Persistir los productos utilizando `localStorage`.
+* Navegación entre páginas con React Router.
+* Página de detalle para cada producto.
+* Página 404 para rutas inexistentes.
+* Navegación automática al inventario después de agregar un producto.
+
+## Páginas
+
+* **Inicio** — Página principal.
+* **Inventario** — Consulta y gestión de los productos.
+* **Nuevo producto** — Formulario para agregar productos.
+* **Detalle** — Información individual de cada producto mediante su ID.
+* **Acerca** — Información de la aplicación.
+* **No encontrado** — Página 404 para rutas inexistentes.
+
+## Tecnologías utilizadas
+
+* React
+* Vite
+* React Router
+* JavaScript
+* HTML
+* CSS
+* localStorage
+
+## React Router
+
+La aplicación utiliza React Router para organizar la navegación mediante rutas sin recargar completamente la página.
+
+Se utiliza:
+
+* `Routes` y `Route` para definir las rutas.
+* `NavLink` para la navegación interna.
+* `useParams()` para obtener el ID del producto desde la URL.
+* `find()` para localizar el producto correspondiente.
+* `useNavigate()` para navegar mediante código.
+
+## Estructura principal
+
+```text
+src/
+├── components/
+│   ├── FormularioProducto.jsx
+│   ├── Navbar.jsx
+│   └── ProductoCard.jsx
+├── pages/
+│   ├── Inicio.jsx
+│   ├── Inventario.jsx
+│   ├── NuevoProducto.jsx
+│   ├── DetalleProducto.jsx
+│   ├── Acerca.jsx
+│   └── NoEncontrado.jsx
+├── data/
+├── App.jsx
+└── main.jsx
+```
