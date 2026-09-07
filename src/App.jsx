@@ -3,6 +3,15 @@ import './App.css';
 import { useState, useEffect } from "react";
 import { productos as productosIniciales } from "./data/productos";
 import FormularioProducto from "./components/FormularioProducto";
+import { Routes, Route } from "react-router";
+import Inicio from "./pages/Inicio";
+import Inventario from "./pages/Inventario";
+import NuevoProducto from "./pages/NuevoProducto";
+import Acerca from "./pages/Acerca";
+import NoEncontrado from "./pages/NoEncontrado";
+import Navbar from "./components/Navbar";
+
+
 
 function App() {
 
@@ -178,7 +187,16 @@ useEffect(() => {
           {mensaje}
         </p>
       )}
+      <Navbar />
 
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/inventario" element={<Inventario />} />
+        <Route path="/nuevo" element={<NuevoProducto />} />
+        <Route path="/acerca" element={<Acerca />} />
+        <Route path="*" element={<NoEncontrado />} />
+      </Routes>
+      
       <section className="panel-control">
 
         <div className="buscador">
@@ -397,5 +415,8 @@ useEffect(() => {
     </main>
   );
 }
-
+// Responsabilidades actuales de:
+// 1. Manejar el estado de los productos.
+// 2. Filtrar y buscar productos.
+// 3. Mostrar y organizar los componentes de la aplicación.
 export default App;
